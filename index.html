@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Azura · Flores eternas & lámparas de chenille</title>
-  <meta name="description" content="Azura — flores eternas y lámparas de chenille hechas a mano. Catálogo y pedidos por WhatsApp." />
+  <title>Azura · Detalles de amor</title>
+  <meta name="description" content="Azura — flores eternas, lámparas de limpia pipas y muñecas artesanales hechas a mano. Detalles de amor. Catálogo y pedidos por WhatsApp." />
 
   <!-- Google Fonts: Fraunces (títulos) + Outfit (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -119,7 +119,7 @@
       background: var(--gold);
       box-shadow: 0 0 10px 2px rgba(255,210,122,.9), 0 0 22px 6px rgba(255,210,122,.5);
     }
-    .nav-links { display: flex; gap: 30px; }
+    .nav-links { display: flex; gap: 26px; }
     .nav-links a { color: var(--text-dim); font-size: .95rem; transition: color .2s; }
     .nav-links a:hover { color: var(--gold); }
 
@@ -143,23 +143,23 @@
       margin-bottom: 22px;
     }
     .hero p.lead {
-      max-width: 560px;
+      max-width: 580px;
       margin: 0 auto 34px;
       color: var(--text-dim);
       font-size: 1.1rem;
     }
 
     /* ---------- Secciones ---------- */
-    section { padding: 70px 0; }
-    .section-head { text-align: center; margin-bottom: 48px; }
+    section { padding: 64px 0; }
+    .section-head { text-align: center; margin-bottom: 44px; }
     .section-head .eyebrow { margin-bottom: 12px; }
     .section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
     .section-head p { color: var(--text-dim); margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto; }
 
-    /* ---------- Catálogo grid ---------- */
+    /* ---------- Catálogo grid: 3 columnas en PC, 2 en celular ---------- */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 26px;
     }
     .card {
@@ -169,12 +169,15 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+      transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
     }
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 46px rgba(0,0,0,.45), 0 0 0 1px rgba(255,210,122,.15);
-      border-color: rgba(255,210,122,.35);
+    /* Se agranda al pasar el mouse, al enfocar (tab) o al tocar/enfocar en celular */
+    .card:hover,
+    .card:focus-within {
+      transform: scale(1.06);
+      box-shadow: 0 22px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(255,210,122,.2);
+      border-color: rgba(255,210,122,.55);
+      z-index: 2;
     }
     .card-img {
       aspect-ratio: 3 / 4;
@@ -187,7 +190,8 @@
       display: block;
       transition: transform .5s ease;
     }
-    .card:hover .card-img img { transform: scale(1.07); }
+    .card:hover .card-img img,
+    .card:focus-within .card-img img { transform: scale(1.04); }
     .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
     .tag {
       align-self: flex-start;
@@ -200,43 +204,23 @@
       border-radius: 999px;
       margin-bottom: 12px;
     }
-    .card-body h3 { font-size: 1.25rem; margin-bottom: 6px; }
-    .card-body .desc { color: var(--text-dim); font-size: .92rem; flex: 1; margin-bottom: 16px; }
+    .card-body h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .card-body .desc { color: var(--text-dim); font-size: .9rem; flex: 1; margin-bottom: 16px; }
     .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .price { font-family: "Fraunces", serif; font-size: 1.35rem; color: var(--text); }
+    .price { font-family: "Fraunces", serif; font-size: 1.3rem; color: var(--text); }
     .btn-sm { padding: 9px 18px; font-size: .9rem; }
 
-    /* ---------- Cursos (dos columnas) ---------- */
-    .courses-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 54px;
-      align-items: center;
-    }
-    .steps { list-style: none; display: flex; flex-direction: column; gap: 26px; margin-top: 10px; }
-    .step { display: flex; gap: 18px; }
-    .step .num {
-      flex-shrink: 0;
-      width: 42px; height: 42px;
-      border-radius: 50%;
-      display: grid; place-items: center;
-      font-family: "Fraunces", serif;
-      font-size: 1.2rem;
-      color: var(--gold);
-      border: 1px solid var(--line);
-      background: rgba(255,210,122,.06);
-    }
-    .step h4 { font-family: "Fraunces", serif; font-size: 1.15rem; margin-bottom: 3px; }
-    .step p { color: var(--text-dim); font-size: .95rem; }
-    .courses-img {
+    /* Mensaje de sección vacía */
+    .empty-note {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 1.05rem;
+      padding: 40px 10px;
+      border: 1px dashed var(--line);
       border-radius: var(--radius);
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      border: 1px solid var(--line);
-      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+      background: rgba(255,210,122,.03);
     }
-    .courses-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .courses-text .btn { margin-top: 34px; }
 
     /* ---------- Contacto ---------- */
     .contact { text-align: center; }
@@ -261,17 +245,23 @@
       font-size: .9rem;
     }
     footer .logo { justify-content: center; margin-bottom: 10px; font-size: 1.2rem; }
+    footer .slogan { color: var(--gold); font-style: italic; font-family: "Fraunces", serif; }
 
     /* WhatsApp icon inline */
     .wa-ico { width: 18px; height: 18px; }
 
-    /* ---------- Responsive ---------- */
+    /* ---------- Responsive: 2 columnas en celular ---------- */
     @media (max-width: 780px) {
-      .nav-links { display: none; }          /* oculta links del nav en móvil */
-      .courses-grid { grid-template-columns: 1fr; gap: 36px; }
-      .courses-img { order: -1; aspect-ratio: 3/2; }
+      .nav-links { gap: 16px; font-size: .9rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
       .hero { padding: 70px 0 50px; }
-      section { padding: 54px 0; }
+      section { padding: 50px 0; }
+      .card-body { padding: 14px 14px 16px; }
+      .card-body h3 { font-size: 1.05rem; }
+      .card:hover, .card:focus-within { transform: scale(1.04); }
+    }
+    @media (max-width: 460px) {
+      .nav-links { display: none; }  /* en pantallas muy chicas ocultamos los links */
     }
   </style>
 </head>
@@ -287,8 +277,9 @@
           <span>Azura</span>
         </a>
         <nav class="nav-links">
-          <a href="#catalogo">Catálogo</a>
-          <a href="#cursos">Cursos</a>
+          <a href="#limpiapipas">Limpia Pipas</a>
+          <a href="#eternas">Flores Eternas</a>
+          <a href="#munecas">Muñecas</a>
           <a href="#contacto">Contacto</a>
         </nav>
       </div>
@@ -297,61 +288,40 @@
     <!-- ===================== HERO ===================== -->
     <a id="top"></a>
     <section class="hero container">
-      <span class="eyebrow">Flores eternas · Hecho a mano</span>
-      <h1>La luz que <span class="italic-gold">florece</span><br />y nunca se <span class="italic-gold">apaga</span></h1>
-      <p class="lead">Lámparas de chenille y flores eternas tejidas a mano, pensadas para brillar suave en la noche y acompañarte para siempre.</p>
-      <a href="#catalogo" class="btn btn-primary">Ver el catálogo</a>
+      <span class="eyebrow">Detalles de amor</span>
+      <h1>Arte que <span class="italic-gold">florece,</span> <span class="italic-gold">ilumina</span> y <span class="italic-gold">enamora.</span></h1>
+      <p class="lead">Flores eternas, lámparas de limpia pipas y muñecas artesanales. Cada pieza tejida a mano, hecha para durar.</p>
+      <a href="#limpiapipas" class="btn btn-primary">Ver el catálogo</a>
     </section>
 
-    <!-- ===================== CATÁLOGO ===================== -->
-    <section id="catalogo" class="container">
+    <!-- ===================== FLORES DE LIMPIA PIPAS ===================== -->
+    <section id="limpiapipas" class="container">
       <div class="section-head">
         <span class="eyebrow">Catálogo</span>
-        <h2>Piezas que <span class="italic-gold">iluminan</span></h2>
-        <p>Cada pieza es única, hecha a mano con chenille. Pide la tuya directo por WhatsApp.</p>
+        <h2>Flores de <span class="italic-gold">Limpia Pipas</span></h2>
+        <p>Flores de chenille tejidas a mano. Cada pieza es única. Pide la tuya directo por WhatsApp.</p>
       </div>
-      <div class="grid" id="grid-productos"><!-- generado por JS --></div>
+      <div class="grid" id="grid-limpiapipas"><!-- generado por JS --></div>
     </section>
 
-    <!-- ===================== CURSOS ===================== -->
-    <section id="cursos" class="container">
-      <div class="courses-grid">
-        <div class="courses-text">
-          <span class="eyebrow">Cursos</span>
-          <h2 style="font-size:clamp(2rem,4.5vw,3rem); margin:12px 0 8px;">Aprende a tejer<br /><span class="italic-gold">tu propia luz</span></h2>
-          <p style="color:var(--text-dim); max-width:440px;">Te enseño el proceso completo, paso a paso, para que crees tus propias flores eternas y lámparas de chenille.</p>
-
-          <ul class="steps">
-            <li class="step">
-              <span class="num">1</span>
-              <div>
-                <h4>Los pétalos</h4>
-                <p>Aprendes a dar forma al chenille y crear pétalos suaves, realistas y con volumen.</p>
-              </div>
-            </li>
-            <li class="step">
-              <span class="num">2</span>
-              <div>
-                <h4>Armado y estructura</h4>
-                <p>Montas el tallo, la base tejida y unes cada parte para que la pieza sea firme y duradera.</p>
-              </div>
-            </li>
-            <li class="step">
-              <span class="num">3</span>
-              <div>
-                <h4>La luz</h4>
-                <p>Integras la iluminación con cuidado para que tu creación brille cálida y segura.</p>
-              </div>
-            </li>
-          </ul>
-
-          <a class="btn btn-primary" id="btn-cursos">Consultar por los cursos</a>
-        </div>
-
-        <div class="courses-img">
-          <img src="img/cursos.jpg" alt="Proceso de creación de una lámpara de chenille Azura" loading="lazy" />
-        </div>
+    <!-- ===================== FLORES ETERNAS ===================== -->
+    <section id="eternas" class="container">
+      <div class="section-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Flores <span class="italic-gold">Eternas</span></h2>
+        <p>Flores de cinta y tela, pensadas para acompañarte para siempre.</p>
       </div>
+      <div class="grid" id="grid-eternas"><!-- generado por JS --></div>
+    </section>
+
+    <!-- ===================== MUÑECAS ===================== -->
+    <section id="munecas" class="container">
+      <div class="section-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2><span class="italic-gold">Muñecas</span> artesanales</h2>
+        <p>Muñecas hechas a mano con vestido de listón. Un detalle lleno de cariño.</p>
+      </div>
+      <div class="grid" id="grid-munecas"><!-- generado por JS --></div>
     </section>
 
     <!-- ===================== CONTACTO ===================== -->
@@ -371,7 +341,8 @@
     <footer>
       <div class="container">
         <div class="logo"><span class="dot"></span><span>Azura</span></div>
-        <p>Flores eternas & lámparas de chenille hechas a mano.</p>
+        <p class="slogan">Detalles de amor</p>
+        <p style="margin-top:6px;">Flores eternas, lámparas de limpia pipas y muñecas artesanales, hechas a mano.</p>
         <p style="margin-top:6px; opacity:.6;">© <span id="year"></span> Azura. Todas las piezas son únicas.</p>
       </div>
     </footer>
@@ -383,39 +354,73 @@
        AZURA — datos y lógica
        ============================================================ */
 
-    /* Número de WhatsApp en formato internacional SIN el "+" */
+    /* Número de WhatsApp en formato internacional SIN el "+" (Venezuela) */
     const WHATSAPP = "584166863023";
 
     /* ------------------------------------------------------------
-       PRODUCTOS — edita este array libremente.
+       PRODUCTOS — edita estos arrays libremente.
        Cada producto tiene:
          nombre  : nombre visible de la pieza
-         img     : ruta de la imagen (carpeta img/)
-         precio  : texto del precio (placeholder por ahora)
+         img     : ruta de la imagen (dentro de la carpeta de su sección)
+         precio  : texto del precio
          tag     : categoría que se muestra como etiqueta
          desc    : descripción corta
+
+       Si un array queda vacío ( [] ), la sección muestra el mensaje
+       "Próximamente nuevas piezas en esta sección 🌸".
        ------------------------------------------------------------ */
-    const productos = [
+
+    /* ---- FLORES DE LIMPIA PIPAS — imágenes en: img/limpia-pipas/ ---- */
+    const limpiapipas = [
       {
         nombre: "Lámpara Abejita Rosa",
-        img:    "img/lampara-abeja-rosa.jpg",
+        img:    "img/limpia-pipas/lampara-abeja-rosa.jpg",
         precio: "$20 USD",
-        tag:    "Lámpara",
+        tag:    "Sin espejo",
         desc:   "Campana rosa que se enciende, con abejita y base tejida."
       },
       {
         nombre: "Lámpara Tulipán Dorado",
-        img:    "img/lampara-tulipan-amarillo.jpg",
+        img:    "img/limpia-pipas/lampara-tulipan-amarillo.jpg",
         precio: "$20 USD",
-        tag:    "Lámpara",
+        tag:    "Sin espejo",
         desc:   "Tulipán amarillo sobre tallo con luces en la base."
       },
       {
-        nombre: "Espejo Flor Azul",
-        img:    "img/espejo-flor-azul.jpg",
+        nombre: "Flor Rosa con Abeja",
+        img:    "img/limpia-pipas/lampara-rosa-abeja.jpg",
+        precio: "$16 USD",
+        tag:    "Sin espejo",
+        desc:   "Campana rosa delicada con su abejita y florcitas."
+      },
+      {
+        nombre: "Lámpara Estrella Amarilla",
+        img:    "img/limpia-pipas/lampara-estrella-amarilla.jpg",
         precio: "$20 USD",
-        tag:    "Espejo",
+        tag:    "Sin espejo",
+        desc:   "Flor estrella iluminada con guirnalda de luces."
+      },
+      {
+        nombre: "Espejo Flor Azul",
+        img:    "img/limpia-pipas/espejo-flor-azul.jpg",
+        precio: "$22 USD",
+        tag:    "Con espejo",
         desc:   "Espejo con marco de flor azul de chenille y tallo curvo."
+      }
+    ];
+
+    /* ---- FLORES ETERNAS — imágenes en: img/eternas/ ---- */
+    /* Vacía por ahora. Agrega objetos igual que arriba cuando tengas piezas. */
+    const eternas = [];
+
+    /* ---- MUÑECAS — imágenes en: img/munecas/ ---- */
+    const munecas = [
+      {
+        nombre: "Muñeca Corona Roja",
+        img:    "img/munecas/muneca-roja-corona.jpg",
+        precio: "$0 USD",
+        tag:    "Muñeca",
+        desc:   "Muñeca con corona y vestido de rosas rojas en listón."
       }
     ];
 
@@ -431,10 +436,17 @@
       ));
     }
 
-    /* Renderiza el catálogo dentro del grid */
-    function renderProductos() {
-      const grid = document.getElementById("grid-productos");
-      grid.innerHTML = productos.map(p => {
+    /* Renderiza un array de productos dentro de un grid por su id */
+    function renderProductos(lista, gridId) {
+      const grid = document.getElementById(gridId);
+      if (!grid) return;
+
+      if (!lista.length) {
+        grid.innerHTML = `<div class="empty-note">Próximamente nuevas piezas en esta sección 🌸</div>`;
+        return;
+      }
+
+      grid.innerHTML = lista.map(p => {
         const msg = `Hola Azura 🌸 me interesa la "${p.nombre}" (${p.precio}). ¿Está disponible?`;
         return `
           <article class="card">
@@ -455,24 +467,22 @@
       }).join("");
     }
 
-    /* Botones de WhatsApp de secciones (cursos y contacto) */
-    function initBotonesWA() {
-      document.getElementById("btn-cursos").href =
-        waLink("Hola Azura 🌸 me interesan los cursos para aprender a hacer las flores y lámparas. ¿Me cuentas más?");
-      document.getElementById("btn-cursos").target = "_blank";
-      document.getElementById("btn-cursos").rel = "noopener";
-
-      document.getElementById("btn-contacto").href =
-        waLink("Hola Azura 🌸 quiero hacer una consulta.");
-      document.getElementById("btn-contacto").target = "_blank";
-      document.getElementById("btn-contacto").rel = "noopener";
+    /* Botón de WhatsApp de la sección Contacto */
+    function initBotonContacto() {
+      const btn = document.getElementById("btn-contacto");
+      btn.href = waLink("Hola Azura 🌸 quiero hacer una consulta.");
+      btn.target = "_blank";
+      btn.rel = "noopener";
     }
 
     /* Año dinámico en el footer */
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    renderProductos();
-    initBotonesWA();
+    /* Render de las tres secciones */
+    renderProductos(limpiapipas, "grid-limpiapipas");
+    renderProductos(eternas,     "grid-eternas");
+    renderProductos(munecas,     "grid-munecas");
+    initBotonContacto();
   </script>
 </body>
 </html>

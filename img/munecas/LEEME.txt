@@ -1,0 +1,9 @@
+Fotos de la sección MUÑECAS (artesanales con vestido de listón).
+Nombres exactos que espera la página:
+
+  muneca-roja-corona.jpg
+
+Recomendaciones:
+- Formato vertical (3:4) para que se vean completas.
+- Menos de ~300 KB cada una para que cargue rápido.
+- Usa .jpg (si usas .webp, cambia la extensión en el array del index.html).

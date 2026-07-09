@@ -1,0 +1,5 @@
+Fotos de la sección FLORES ETERNAS (cinta y tela).
+Sección vacía por ahora.
+
+Cuando tengas piezas, coloca aquí sus fotos (formato vertical 3:4,
+menos de ~300 KB) y agrégalas al array "eternas" dentro del index.html.
