@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azura · Flores eternas & lámparas de chenille</title>
+  <meta name="description" content="Azura — flores eternas y lámparas de chenille hechas a mano. Catálogo y pedidos por WhatsApp." />
+
+  <!-- Google Fonts: Fraunces (títulos) + Outfit (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       AZURA — estilos
+       Paleta nocturna: fondo oscuro, acento dorado cálido, texto claro
+       ============================================================ */
+    :root {
+      --bg:        #12101a;   /* fondo oscuro base */
+      --bg-soft:   #1a1724;   /* superficies (cards, nav) */
+      --bg-soft-2: #221d30;   /* hover / bordes suaves */
+      --gold:      #ffd27a;   /* acento dorado cálido (resplandor) */
+      --gold-deep: #e8b45a;   /* dorado más profundo */
+      --text:      #f2eee9;   /* texto claro */
+      --text-dim:  #b7afc2;   /* texto secundario */
+      --line:      rgba(255,210,122,.14);
+      --radius:    18px;
+      --maxw:      1160px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Outfit", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Glow radial ambiental de fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(60% 45% at 50% 0%,   rgba(255,210,122,.12), transparent 70%),
+        radial-gradient(45% 40% at 85% 20%,  rgba(255,180,90,.08),  transparent 70%),
+        radial-gradient(50% 45% at 10% 70%,  rgba(120,90,200,.10),  transparent 70%);
+    }
+
+    /* Todo el contenido por encima del glow */
+    .wrap { position: relative; z-index: 1; }
+
+    .container {
+      width: 100%;
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 22px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3, .serif { font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -.01em; }
+    .italic-gold { font-style: italic; color: var(--gold); font-weight: 500; }
+
+    /* ---------- Botones ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-family: "Outfit", sans-serif;
+      font-weight: 500;
+      font-size: .98rem;
+      padding: 13px 24px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform .2s ease, box-shadow .3s ease, background .2s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: linear-gradient(180deg, var(--gold), var(--gold-deep));
+      color: #2a1e05;
+      box-shadow: 0 8px 30px rgba(255,210,122,.28);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,210,122,.42); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ---------- Nav sticky ---------- */
+    header.nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(18,16,26,.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+    .logo { display: flex; align-items: center; gap: 11px; font-family: "Fraunces", serif; font-size: 1.4rem; font-weight: 600; }
+    .logo .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px 2px rgba(255,210,122,.9), 0 0 22px 6px rgba(255,210,122,.5);
+    }
+    .nav-links { display: flex; gap: 30px; }
+    .nav-links a { color: var(--text-dim); font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      text-align: center;
+      padding: 96px 0 70px;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: .8rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 22px;
+      opacity: .9;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 7vw, 4.8rem);
+      line-height: 1.05;
+      margin-bottom: 22px;
+    }
+    .hero p.lead {
+      max-width: 560px;
+      margin: 0 auto 34px;
+      color: var(--text-dim);
+      font-size: 1.1rem;
+    }
+
+    /* ---------- Secciones ---------- */
+    section { padding: 70px 0; }
+    .section-head { text-align: center; margin-bottom: 48px; }
+    .section-head .eyebrow { margin-bottom: 12px; }
+    .section-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+    .section-head p { color: var(--text-dim); margin-top: 12px; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+    /* ---------- Catálogo grid ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 26px;
+    }
+    .card {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 46px rgba(0,0,0,.45), 0 0 0 1px rgba(255,210,122,.15);
+      border-color: rgba(255,210,122,.35);
+    }
+    .card-img {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: var(--bg-soft-2);
+    }
+    .card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .5s ease;
+    }
+    .card:hover .card-img img { transform: scale(1.07); }
+    .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+    .tag {
+      align-self: flex-start;
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--line);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .card-body h3 { font-size: 1.25rem; margin-bottom: 6px; }
+    .card-body .desc { color: var(--text-dim); font-size: .92rem; flex: 1; margin-bottom: 16px; }
+    .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .price { font-family: "Fraunces", serif; font-size: 1.35rem; color: var(--text); }
+    .btn-sm { padding: 9px 18px; font-size: .9rem; }
+
+    /* ---------- Cursos (dos columnas) ---------- */
+    .courses-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 54px;
+      align-items: center;
+    }
+    .steps { list-style: none; display: flex; flex-direction: column; gap: 26px; margin-top: 10px; }
+    .step { display: flex; gap: 18px; }
+    .step .num {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: "Fraunces", serif;
+      font-size: 1.2rem;
+      color: var(--gold);
+      border: 1px solid var(--line);
+      background: rgba(255,210,122,.06);
+    }
+    .step h4 { font-family: "Fraunces", serif; font-size: 1.15rem; margin-bottom: 3px; }
+    .step p { color: var(--text-dim); font-size: .95rem; }
+    .courses-img {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+      border: 1px solid var(--line);
+      box-shadow: 0 20px 50px rgba(0,0,0,.4);
+    }
+    .courses-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .courses-text .btn { margin-top: 34px; }
+
+    /* ---------- Contacto ---------- */
+    .contact { text-align: center; }
+    .contact .card-panel {
+      max-width: 640px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, var(--bg-soft), var(--bg));
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: 58px 30px;
+    }
+    .contact h2 { font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 14px; }
+    .contact p { color: var(--text-dim); margin-bottom: 30px; }
+    .btn-lg { padding: 16px 34px; font-size: 1.05rem; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: .9rem;
+    }
+    footer .logo { justify-content: center; margin-bottom: 10px; font-size: 1.2rem; }
+
+    /* WhatsApp icon inline */
+    .wa-ico { width: 18px; height: 18px; }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 780px) {
+      .nav-links { display: none; }          /* oculta links del nav en móvil */
+      .courses-grid { grid-template-columns: 1fr; gap: 36px; }
+      .courses-img { order: -1; aspect-ratio: 3/2; }
+      .hero { padding: 70px 0 50px; }
+      section { padding: 54px 0; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <!-- ===================== NAV ===================== -->
+    <header class="nav">
+      <div class="container nav-inner">
+        <a href="#top" class="logo">
+          <span class="dot"></span>
+          <span>Azura</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#catalogo">Catálogo</a>
+          <a href="#cursos">Cursos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===================== HERO ===================== -->
+    <a id="top"></a>
+    <section class="hero container">
+      <span class="eyebrow">Flores eternas · Hecho a mano</span>
+      <h1>La luz que <span class="italic-gold">florece</span><br />y nunca se <span class="italic-gold">apaga</span></h1>
+      <p class="lead">Lámparas de chenille y flores eternas tejidas a mano, pensadas para brillar suave en la noche y acompañarte para siempre.</p>
+      <a href="#catalogo" class="btn btn-primary">Ver el catálogo</a>
+    </section>
+
+    <!-- ===================== CATÁLOGO ===================== -->
+    <section id="catalogo" class="container">
+      <div class="section-head">
+        <span class="eyebrow">Catálogo</span>
+        <h2>Piezas que <span class="italic-gold">iluminan</span></h2>
+        <p>Cada pieza es única, hecha a mano con chenille. Pide la tuya directo por WhatsApp.</p>
+      </div>
+      <div class="grid" id="grid-productos"><!-- generado por JS --></div>
+    </section>
+
+    <!-- ===================== CURSOS ===================== -->
+    <section id="cursos" class="container">
+      <div class="courses-grid">
+        <div class="courses-text">
+          <span class="eyebrow">Cursos</span>
+          <h2 style="font-size:clamp(2rem,4.5vw,3rem); margin:12px 0 8px;">Aprende a tejer<br /><span class="italic-gold">tu propia luz</span></h2>
+          <p style="color:var(--text-dim); max-width:440px;">Te enseño el proceso completo, paso a paso, para que crees tus propias flores eternas y lámparas de chenille.</p>
+
+          <ul class="steps">
+            <li class="step">
+              <span class="num">1</span>
+              <div>
+                <h4>Los pétalos</h4>
+                <p>Aprendes a dar forma al chenille y crear pétalos suaves, realistas y con volumen.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="num">2</span>
+              <div>
+                <h4>Armado y estructura</h4>
+                <p>Montas el tallo, la base tejida y unes cada parte para que la pieza sea firme y duradera.</p>
+              </div>
+            </li>
+            <li class="step">
+              <span class="num">3</span>
+              <div>
+                <h4>La luz</h4>
+                <p>Integras la iluminación con cuidado para que tu creación brille cálida y segura.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a class="btn btn-primary" id="btn-cursos">Consultar por los cursos</a>
+        </div>
+
+        <div class="courses-img">
+          <img src="img/cursos.jpg" alt="Proceso de creación de una lámpara de chenille Azura" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACTO ===================== -->
+    <section id="contacto" class="container contact">
+      <div class="card-panel">
+        <span class="eyebrow">Contacto</span>
+        <h2>Pide la tuya <span class="italic-gold">hoy</span></h2>
+        <p>Escríbeme por WhatsApp y con gusto te ayudo a elegir tu pieza o resolver cualquier duda.</p>
+        <a class="btn btn-primary btn-lg" id="btn-contacto">
+          <svg class="wa-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.13-2.9-7A9.82 9.82 0 0 0 12.04 2zm0 18.05h-.01a8.2 8.2 0 0 1-4.18-1.14l-.3-.18-3.13.82.84-3.05-.2-.31a8.2 8.2 0 0 1-1.26-4.36c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.24 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.16.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43l-.48-.01c-.16 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.16 1.75 2.67 4.25 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+          Escribir por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer>
+      <div class="container">
+        <div class="logo"><span class="dot"></span><span>Azura</span></div>
+        <p>Flores eternas & lámparas de chenille hechas a mano.</p>
+        <p style="margin-top:6px; opacity:.6;">© <span id="year"></span> Azura. Todas las piezas son únicas.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    /* ============================================================
+       AZURA — datos y lógica
+       ============================================================ */
+
+    /* Número de WhatsApp en formato internacional SIN el "+" */
+    const WHATSAPP = "584166863023";
+
+    /* ------------------------------------------------------------
+       PRODUCTOS — edita este array libremente.
+       Cada producto tiene:
+         nombre  : nombre visible de la pieza
+         img     : ruta de la imagen (carpeta img/)
+         precio  : texto del precio (placeholder por ahora)
+         tag     : categoría que se muestra como etiqueta
+         desc    : descripción corta
+       ------------------------------------------------------------ */
+    const productos = [
+      {
+        nombre: "Lámpara Abejita Rosa",
+        img:    "img/lampara-abeja-rosa.jpg",
+        precio: "$0",
+        tag:    "Lámpara",
+        desc:   "Campana rosa que se enciende, con abejita y base tejida."
+      },
+      {
+        nombre: "Lámpara Tulipán Dorado",
+        img:    "img/lampara-tulipan-amarillo.jpg",
+        precio: "$0",
+        tag:    "Lámpara",
+        desc:   "Tulipán amarillo sobre tallo con luces en la base."
+      },
+      {
+        nombre: "Flor Rosa con Abeja",
+        img:    "img/lampara-rosa-abeja.jpg",
+        precio: "$0",
+        tag:    "Flor eterna",
+        desc:   "Campana rosa delicada con su abejita y florcitas."
+      },
+      {
+        nombre: "Lámpara Estrella Amarilla",
+        img:    "img/lampara-estrella-amarilla.jpg",
+        precio: "$0",
+        tag:    "Lámpara",
+        desc:   "Flor estrella iluminada con guirnalda de luces."
+      },
+      {
+        nombre: "Espejo Flor Azul",
+        img:    "img/espejo-flor-azul.jpg",
+        precio: "$0",
+        tag:    "Espejo",
+        desc:   "Espejo con marco de flor azul de chenille y tallo curvo."
+      }
+    ];
+
+    /* Arma un enlace de WhatsApp con el texto pre-escrito */
+    function waLink(texto) {
+      return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(texto)}`;
+    }
+
+    /* Escapa texto para insertarlo de forma segura en el HTML */
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, c => (
+        { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]
+      ));
+    }
+
+    /* Renderiza el catálogo dentro del grid */
+    function renderProductos() {
+      const grid = document.getElementById("grid-productos");
+      grid.innerHTML = productos.map(p => {
+        const msg = `Hola Azura 🌸 me interesa la "${p.nombre}" (${p.precio}). ¿Está disponible?`;
+        return `
+          <article class="card">
+            <div class="card-img">
+              <img src="${esc(p.img)}" alt="${esc(p.nombre)}" loading="lazy" />
+            </div>
+            <div class="card-body">
+              <span class="tag">${esc(p.tag)}</span>
+              <h3>${esc(p.nombre)}</h3>
+              <p class="desc">${esc(p.desc)}</p>
+              <div class="card-foot">
+                <span class="price">${esc(p.precio)}</span>
+                <a class="btn btn-primary btn-sm" target="_blank" rel="noopener"
+                   href="${waLink(msg)}">Pedir</a>
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+    }
+
+    /* Botones de WhatsApp de secciones (cursos y contacto) */
+    function initBotonesWA() {
+      document.getElementById("btn-cursos").href =
+        waLink("Hola Azura 🌸 me interesan los cursos para aprender a hacer las flores y lámparas. ¿Me cuentas más?");
+      document.getElementById("btn-cursos").target = "_blank";
+      document.getElementById("btn-cursos").rel = "noopener";
+
+      document.getElementById("btn-contacto").href =
+        waLink("Hola Azura 🌸 quiero hacer una consulta.");
+      document.getElementById("btn-contacto").target = "_blank";
+      document.getElementById("btn-contacto").rel = "noopener";
+    }
+
+    /* Año dinámico en el footer */
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    renderProductos();
+    initBotonesWA();
+  </script>
+</body>
+</html>
